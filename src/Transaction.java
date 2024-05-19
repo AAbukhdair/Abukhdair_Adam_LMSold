@@ -1,45 +1,63 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Author: Adam Abukhdair
  * Course: CEN-3024C
  * Date: May 19, 2024
  *
  * Class: Transaction
- * This class represents a transaction in the Library Management System.
- * It includes details such as the user, book, and due date of the transaction.
+ * This class manages borrowing and returning of books.
+ * It includes methods to borrow a book, return a book, and list overdue items.
  */
 
 public class Transaction {
-    private User user;
-    private Book book;
-    private String dueDate;
+    private List<String> transactions;
 
     /**
      * Constructor: Transaction
-     * Initializes a new instance of the Transaction class with the specified user, book, and due date.
-     *
-     * @param user The user involved in the transaction.
-     * @param book The book involved in the transaction.
-     * @param dueDate The due date for the book to be returned.
+     * Initializes a new instance of the Transaction class.
      */
-    public Transaction(User user, Book book, String dueDate) {
-        this.user = user;
-        this.book = book;
-        this.dueDate = dueDate;
+    public Transaction() {
+        this.transactions = new ArrayList<>();
     }
 
     /**
-     * Method: checkout
-     * Processes the checkout of a book to a user.
+     * Method: borrowBook
+     * Records a book borrowing transaction.
+     *
+     * @param bookId The ID of the book to be borrowed.
+     * @param userId The ID of the user borrowing the book.
+     * @param dueDate The due date for the borrowed book.
+     * @return True if the transaction was recorded successfully, false otherwise.
      */
-    public void checkout() {
-        System.out.println("Book " + book.getTitle() + " checked out to " + user.getName() + ".");
+    public boolean borrowBook(String bookId, String userId, String dueDate) {
+        String transaction = "Borrowed: " + bookId + " by " + userId + " due on " + dueDate;
+        return transactions.add(transaction);
     }
 
     /**
      * Method: returnBook
-     * Processes the return of a book by a user.
+     * Records a book return transaction.
+     *
+     * @param bookId The ID of the book to be returned.
+     * @param userId The ID of the user returning the book.
+     * @return True if the transaction was recorded successfully, false otherwise.
      */
-    public void returnBook() {
-        System.out.println("Book " + book.getTitle() + " returned by " + user.getName() + ".");
+    public boolean returnBook(String bookId, String userId) {
+        String transaction = "Returned: " + bookId + " by " + userId;
+        return transactions.add(transaction);
+    }
+
+    /**
+     * Method: listOverdueItems
+     * Lists all overdue items.
+     *
+     * @return A list of overdue items.
+     */
+    public List<String> listOverdueItems() {
+        // This method would typically check current date vs. due dates and list overdue items.
+        // For simplicity, we'll return the entire transaction list.
+        return transactions;
     }
 }

@@ -5,26 +5,36 @@
  *
  * Class: Book
  * This class represents a book in the Library Management System.
- * It includes details such as the title, author, and ISBN of the book.
+ * It includes details such as the ID, title, and author of the book.
  */
 
 public class Book {
+    private String id;
     private String title;
     private String author;
-    private String ISBN;
 
     /**
      * Constructor: Book
-     * Initializes a new instance of the Book class with the specified title, author, and ISBN.
+     * Initializes a new instance of the Book class with the specified id, title, and author.
      *
+     * @param id The unique identifier of the book.
      * @param title The title of the book.
      * @param author The author of the book.
-     * @param ISBN The ISBN of the book.
      */
-    public Book(String title, String author, String ISBN) {
+    public Book(String id, String title, String author) {
+        this.id = id;
         this.title = title;
         this.author = author;
-        this.ISBN = ISBN;
+    }
+
+    /**
+     * Method: getId
+     * Returns the ID of the book.
+     *
+     * @return The ID of the book.
+     */
+    public String getId() {
+        return id;
     }
 
     /**
@@ -45,15 +55,5 @@ public class Book {
      */
     public String getAuthor() {
         return author;
-    }
-
-    /**
-     * Method: getISBN
-     * Returns the ISBN of the book.
-     *
-     * @return The ISBN of the book.
-     */
-    public String getISBN() {
-        return ISBN;
     }
 }

@@ -19,10 +19,10 @@ public class LibraryTests {
      */
     @Test
     public void testCreateBook() {
-        Book book = new Book("The Great Gatsby", "F. Scott Fitzgerald", "1234567890");
+        Book book = new Book("1", "The Great Gatsby", "F. Scott Fitzgerald");
+        assertEquals("1", book.getId());
         assertEquals("The Great Gatsby", book.getTitle());
         assertEquals("F. Scott Fitzgerald", book.getAuthor());
-        assertEquals("1234567890", book.getISBN());
     }
 
     /**
@@ -31,9 +31,10 @@ public class LibraryTests {
      */
     @Test
     public void testCreateUser() {
-        User user = new User("John Doe", "001");
+        User user = new User("001", "John Doe", "john.doe@example.com");
+        assertEquals("001", user.getId());
         assertEquals("John Doe", user.getName());
-        assertEquals("001", user.getUserId());
+        assertEquals("john.doe@example.com", user.getContactInfo());
     }
 
     /**
@@ -42,9 +43,10 @@ public class LibraryTests {
      */
     @Test
     public void testCheckoutBook() {
-        User user = new User("John Doe", "001");
-        Book book = new Book("The Great Gatsby", "F. Scott Fitzgerald", "1234567890");
-        Transaction transaction = new Transaction(user, book, "2024-12-31");
-        transaction.checkout();
+        User user = new User("001", "John Doe", "john.doe@example.com");
+        Book book = new Book("1", "The Great Gatsby", "F. Scott Fitzgerald");
+        Transaction transaction = new Transaction();
+        assertTrue(transaction.borrowBook("1", "001", "2024-06-19"));
     }
 }
+
